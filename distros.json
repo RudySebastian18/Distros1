@@ -18,7 +18,8 @@
     "filosofia": "Estabilidad, software libre, lanzamientos bien definidos.",
     "basado_en": "Slackware (inspiración inicial)",
     "ramas": ["Ubuntu", "Linux Mint", "Kali Linux"],
-    "publico_objetivo": "Intermedios"
+    "publico_objetivo": "Intermedios",
+    "logo": "logos/debian.png"
   },
   {
     "nombre": "Ubuntu",
@@ -28,7 +29,8 @@
     "filosofia": "Facilidad de uso y accesibilidad.",
     "basado_en": "Debian",
     "ramas": ["Kubuntu", "Xubuntu", "Lubuntu"],
-    "publico_objetivo": "Principiantes"
+    "publico_objetivo": "Principiantes",
+    "logo": "logos/ubuntu.png"
   },
   {
     "nombre": "Linux Mint",
@@ -38,7 +40,8 @@
     "filosofia": "Simplicidad y usabilidad.",
     "basado_en": "Ubuntu",
     "ramas": [],
-    "publico_objetivo": "Principiantes"
+    "publico_objetivo": "Principiantes",
+    "logo": "logos/mint.png"
   },
   {
     "nombre": "Fedora",
@@ -48,7 +51,8 @@
     "filosofia": "Innovación, software libre y comunidad.",
     "basado_en": "Red Hat Linux",
     "ramas": ["Red Hat Enterprise Linux"],
-    "publico_objetivo": "Intermedios"
+    "publico_objetivo": "Intermedios",
+    "logo": "logos/fedora.png"
   },
   {
     "nombre": "Arch Linux",
@@ -58,7 +62,8 @@
     "filosofia": "Rolling release, simplicidad, KISS.",
     "basado_en": "Crux (inspiración inicial)",
     "ramas": ["Manjaro", "ArcoLinux"],
-    "publico_objetivo": "Avanzados"
+    "publico_objetivo": "Avanzados",
+    "logo": "logos/arch.png"
   },
   {
     "nombre": "Manjaro",
@@ -69,6 +74,7 @@
     "basado_en": "Arch Linux",
     "ramas": [],
     "publico_objetivo": "Principiantes"
+    "logo": "logos/manjaro.png"
   },
   {
     "nombre": "Kali Linux",
@@ -79,5 +85,6 @@
     "basado_en": "Debian",
     "ramas": [],
     "publico_objetivo": "Avanzados"
+    "logo": "logos/kali.png"
   }
 ]
