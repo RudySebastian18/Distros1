@@ -137,11 +137,49 @@ if distros:
                  labels={"nombre":"Distribución", "num_ramas":"Número de derivadas"})
     st.plotly_chart(fig, use_container_width=True)
 
-    # Pie chart de filosofías
-    filosofias = df["filosofia"].value_counts()
-    fig2 = px.pie(values=filosofias.values, names=filosofias.index, 
-                  title="Distribución por filosofías")
-    st.plotly_chart(fig2, use_container_width=True)
+    # ===============================
+# 📊 Pie chart de filosofías agrupadas con ejemplos
+# ===============================
+
+# Función para categorizar
+def categorizar_filosofia(filo):
+    if "KISS" in filo or "simplicidad" in filo.lower():
+        return "Simplicidad"
+    elif "estabilidad" in filo.lower():
+        return "Estabilidad"
+    elif "accesibilidad" in filo.lower() or "uso" in filo.lower():
+        return "Accesibilidad / Fácil uso"
+    elif "innovación" in filo.lower() or "últimas" in filo.lower():
+        return "Innovación"
+    elif "seguridad" in filo.lower() or "auditoría" in filo.lower():
+        return "Seguridad"
+    else:
+        return "Otros"
+
+# Nueva columna en el DataFrame
+df["categoria_filosofia"] = df["filosofia"].apply(categorizar_filosofia)
+
+# Agrupamos y juntamos los nombres de distros por categoría
+agrupado = df.groupby("categoria_filosofia").agg({
+    "nombre": lambda x: ", ".join(x),  # Lista de distros
+    "filosofia": "count"               # Conteo
+}).reset_index()
+
+# Renombramos para mayor claridad
+agrupado.rename(columns={"filosofia": "conteo"}, inplace=True)
+
+# Creamos gráfico con tooltips personalizados
+fig2 = px.pie(
+    agrupado, 
+    values="conteo", 
+    names="categoria_filosofia", 
+    title="Distribución por filosofías (agrupadas)",
+    hover_data={"nombre": True, "conteo": True}
+)
+
+# Mostramos gráfico
+st.plotly_chart(fig2, use_container_width=True)
+
 
 # ===============================
 # 🎨 SECCIÓN: Galería de Logos
