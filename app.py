@@ -33,7 +33,7 @@ if distros:
             if distro['ramas']:
                 st.write(f"**Ramas derivadas:** {', '.join(distro['ramas'])}")
 
----
+#---
 
 ### Sección de Árboles Genealógicos (corregida)
 
@@ -62,7 +62,7 @@ if distros:
     # Muestra el gráfico en Streamlit
     components.html(st.session_state.grafo_html, height=750)
 
----
+#---
 
 ### Sección de Comparativas
 
@@ -85,7 +85,7 @@ if all(distros_comparar.values()):
     with col3:
         st.metric(label="Arch Linux", value=distros_comparar['Arch Linux']['paqueteria'])
 
----
+#---
 
 ### Sección de Introducción para Principiantes
 
@@ -94,7 +94,7 @@ st.markdown("Un área con información básica para aquellos que recién comienz
 st.write("¿Qué es una distribución de Linux? ¿Cuál es la mejor para empezar?")
 st.info("Una distribución es una colección de software basada en el kernel de Linux...")
 
----
+#---
 
 ### Cambios realizados:
 
