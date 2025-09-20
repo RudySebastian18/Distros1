@@ -117,6 +117,7 @@ import plotly.express as px
 import pandas as pd
 import folium
 from streamlit_folium import st_folium
+from PIL import Image
 
 # ===============================
 # 📊 SECCIÓN: Gráficos estadísticos
@@ -150,10 +151,11 @@ for i, distro in enumerate(distros):
     if "logo" in distro and distro["logo"]:
         try:
             with cols[i % 3]:
-                st.image(distro["logo"], width=150, caption=distro["nombre"])
+                img = Image.open(distro["logo"])
+                img = img.resize((150, 150))  # 👈 todos iguales
+                st.image(img, caption=distro["nombre"], use_container_width=False)
         except FileNotFoundError:
             st.warning(f"⚠️ No se encontró el logo para {distro['nombre']}")
-
 
 # ===============================
 # 🌐 SECCIÓN: Popularidad en el tiempo (ejemplo fake data)
