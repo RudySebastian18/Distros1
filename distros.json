@@ -1,29 +1,29 @@
 [
   {
-    "nombre": "Debian",
-    "fecha_lanzamiento": "1993-08-16",
-    "descripcion": "Una de las distribuciones más antiguas y estables...",
-    "paqueteria": ".deb",
-    "filosofia": "Software libre, estabilidad...",
+    "nombre": "Slackware",
+    "fecha_lanzamiento": "1993-07-17",
+    "descripcion": "Una de las distribuciones más antiguas y la base de muchas otras. Conocida por su simplicidad y adherencia a la filosofía de UNIX. Requiere un alto grado de conocimiento técnico.",
+    "paqueteria": "tgz",
+    "filosofia": "Estabilidad, simplicidad, KISS (Keep It Simple, Stupid).",
     "basado_en": null,
-    "ramas": ["Ubuntu", "Linux Mint", "Kali Linux"]
+    "ramas": ["SUSE Linux Enterprise"]
   },
   {
-    "nombre": "Ubuntu",
-    "fecha_lanzamiento": "2004-10-20",
-    "descripcion": "Basada en Debian, se centra en la facilidad de uso...",
+    "nombre": "Debian",
+    "fecha_lanzamiento": "1993-08-16",
+    "descripcion": "Fundada por Ian Murdock, se enfoca en la estabilidad y el software libre. Es la base de un vasto número de distribuciones y tiene un sistema de paquetería muy robusto.",
     "paqueteria": ".deb",
-    "filosofia": "Facilidad de uso, lanzamientos periódicos...",
-    "basado_en": "Debian",
-    "ramas": ["Kubuntu", "Xubuntu", "Lubuntu"]
+    "filosofia": "Estabilidad, software libre, lanzamientos bien definidos.",
+    "basado_en": "Slackware (inspiración inicial)",
+    "ramas": ["Ubuntu", "Linux Mint", "Kali Linux"]
   },
   {
     "nombre": "Arch Linux",
     "fecha_lanzamiento": "2002-03-11",
-    "descripcion": "Distribución minimalista y flexible con un modelo 'rolling release'...",
+    "descripcion": "Una distribución minimalista y flexible con un modelo de 'rolling release'. Se enfoca en la simplicidad y el control del usuario, permitiendo construir el sistema desde cero.",
     "paqueteria": "pacman",
-    "filosofia": "Principio KISS, simplicidad, rolling release...",
-    "basado_en": null,
+    "filosofia": "Rolling release, simplicidad, KISS.",
+    "basado_en": "Crux (inspiración inicial)",
     "ramas": ["Manjaro", "ArcoLinux"]
   }
 ]
