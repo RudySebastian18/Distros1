@@ -48,7 +48,7 @@ if distros:
             if distro['nombre'] not in nodos_existentes:
                 net.add_node(
                     distro['nombre'], 
-                    title=f"<b>{distro['nombre']}</b><br>{distro['descripcion']}",  # Tooltip con descripción
+                    title=f"<b>{distro['nombre']}</b><br>{distro['descripcion']}",  
                     color="lightblue"
                 )
                 nodos_existentes.add(distro['nombre'])
@@ -63,10 +63,12 @@ if distros:
                     nodos_existentes.add(distro['basado_en'])
                 net.add_edge(distro['basado_en'], distro['nombre'])
         
+        # Guardar HTML en memoria
         st.session_state.grafo_html = net.generate_html()
 
     # Mostrar el grafo
     components.html(st.session_state.grafo_html, height=750)
+
 
 # ⚖️ Sección de Comparativas
 st.markdown("---")
