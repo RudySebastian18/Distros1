@@ -8,6 +8,7 @@
     "basado_en": null,
     "ramas": ["SUSE Linux Enterprise"],
     "publico_objetivo": "Expertos"
+    "logo": "logos/slackware.png"
   },
   {
     "nombre": "Debian",
