@@ -41,30 +41,31 @@ st.markdown("Descubre cómo las distribuciones están relacionadas...")
 
 if distros:
     if 'grafo_html' not in st.session_state:
-    net = Network(height='750px', width='100%', bgcolor='#222222', font_color='white')
+        net = Network(height='750px', width='100%', bgcolor='#222222', font_color='white')
 
-    nodos_existentes = set() 
-    for distro in distros:
-        if distro['nombre'] not in nodos_existentes:
-            net.add_node(
-                distro['nombre'], 
-                title=f"<b>{distro['nombre']}</b><br>{distro['descripcion']}", 
-                color="lightblue"
-            )
-            nodos_existentes.add(distro['nombre'])
-
-        if distro['basado_en']:
-            if distro['basado_en'] not in nodos_existentes:
+        nodos_existentes = set() 
+        for distro in distros:
+            if distro['nombre'] not in nodos_existentes:
                 net.add_node(
-                    distro['basado_en'], 
-                    title=f"<b>{distro['basado_en']}</b>", 
-                    color="orange"
+                    distro['nombre'], 
+                    title=f"<b>{distro['nombre']}</b><br>{distro['descripcion']}",  # Tooltip con descripción
+                    color="lightblue"
                 )
-                nodos_existentes.add(distro['basado_en'])
-            net.add_edge(distro['basado_en'], distro['nombre'])
-    
-    st.session_state.grafo_html = net.generate_html()
+                nodos_existentes.add(distro['nombre'])
 
+            if distro['basado_en']:
+                if distro['basado_en'] not in nodos_existentes:
+                    net.add_node(
+                        distro['basado_en'], 
+                        title=f"<b>{distro['basado_en']}</b>", 
+                        color="orange"
+                    )
+                    nodos_existentes.add(distro['basado_en'])
+                net.add_edge(distro['basado_en'], distro['nombre'])
+        
+        st.session_state.grafo_html = net.generate_html()
+
+    # Mostrar el grafo
     components.html(st.session_state.grafo_html, height=750)
 
 # ⚖️ Sección de Comparativas
