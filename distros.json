@@ -73,7 +73,7 @@
     "filosofia": "Accesibilidad con el poder de Arch Linux.",
     "basado_en": "Arch Linux",
     "ramas": [],
-    "publico_objetivo": "Principiantes"
+    "publico_objetivo": "Principiantes",
     "logo": "logos/manjaro.png"
   },
   {
@@ -84,7 +84,7 @@
     "filosofia": "Seguridad, investigación y auditoría.",
     "basado_en": "Debian",
     "ramas": [],
-    "publico_objetivo": "Avanzados"
+    "publico_objetivo": "Avanzados",
     "logo": "logos/kali.png"
   }
 ]
