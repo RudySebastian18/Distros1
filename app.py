@@ -83,12 +83,22 @@ if all(distros_comparar.values()):
 
 #---
 
-### Sección de Introducción para Principiantes
+# En la sección de principiantes
+st.header("📚 Guía para principiantes: ¿Cuál elegir?")
+principiantes_distros = [d for d in distros if d.get('publico_objetivo') == 'Principiantes']
 
-st.header("📚 Introducción para Principiantes")
-st.markdown("Un área con información básica para aquellos que recién comienzan...")
-st.write("¿Qué es una distribución de Linux? ¿Cuál es la mejor para empezar?")
-st.info("Una distribución es una colección de software basada en el kernel de Linux...")
+if principiantes_distros:
+    opcion = st.selectbox(
+        "Selecciona una distribución para saber más:",
+        options=[d['nombre'] for d in principiantes_distros]
+    )
+    
+    distro_elegida = next((d for d in principiantes_distros if d['nombre'] == opcion), None)
+    if distro_elegida:
+        st.subheader(f"✅ {distro_elegida['nombre']}")
+        st.write(f"**Descripción:** {distro_elegida['descripcion']}")
+        st.write(f"**Paquetería:** {distro_elegida['paqueteria']}")
+        st.write(f"**Filosofía:** {distro_elegida['filosofia']}")
 
 #---
 
