@@ -142,22 +142,18 @@ if distros:
 
 # ===============================
 # 🎨 SECCIÓN: Galería de Logos
-# ===============================
 st.markdown("---")
 st.header("🎨 Galería de Logos")
-for distro in distros:
-    if "logo" in distro:
-        st.image(distro["logo"], width=120, caption=distro["nombre"])
 
-
-col1, col2, col3 = st.columns(3)
+cols = st.columns(3)  # mostrar en 3 columnas
 for i, distro in enumerate(distros):
-    logo_path = f"logos/{distro['nombre'].lower().replace(' ','_')}.png"
-    with [col1, col2, col3][i % 3]:
+    if "logo" in distro and distro["logo"]:
         try:
-            st.image(logo_path, caption=distro['nombre'], width=150)
-        except:
-            st.write(f"❌ Logo de {distro['nombre']} no disponible")
+            with cols[i % 3]:
+                st.image(distro["logo"], width=150, caption=distro["nombre"])
+        except FileNotFoundError:
+            st.warning(f"⚠️ No se encontró el logo para {distro['nombre']}")
+
 
 # ===============================
 # 🌐 SECCIÓN: Popularidad en el tiempo (ejemplo fake data)
