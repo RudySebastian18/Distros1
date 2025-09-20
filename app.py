@@ -40,23 +40,24 @@ st.header("🌳 Árboles Genealógicos")
 st.markdown("Descubre cómo las distribuciones están relacionadas...")
 
 if distros:
-    # Crear un contenedor para el gráfico y evitar la re-generación
-    # Esto es una buena práctica para optimizar el rendimiento de la app
     if 'grafo_html' not in st.session_state:
         net = Network(height='750px', width='100%', bgcolor='#222222', font_color='white')
 
-        # Añadir nodos y aristas dinámicamente desde los datos JSON
+        # Usar un set para evitar nodos duplicados
+        nodos_existentes = set() 
         for distro in distros:
-            net.add_node(distro['nombre'], title=distro['descripcion'], color="lightblue")
-            if distro['basado_en']:
-                distro_base = next((d for d in distros if d['nombre'] == distro['basado_en']), None)
-                if not distro_base:
-                    net.add_node(distro['basado_en'], color="orange")
-                net.add_edge(distro['basado_en'], distro['nombre'])
+            if distro['nombre'] not in nodos_existentes:
+                net.add_node(distro['nombre'], title=f"**{distro['nombre']}**\n{distro['descripcion']}", color="lightblue")
+                nodos_existentes.add(distro['nombre'])
 
+            if distro['basado_en']:
+                if distro['basado_en'] not in nodos_existentes:
+                    net.add_node(distro['basado_en'], title=f"**{distro['basado_en']}**", color="orange")
+                    nodos_existentes.add(distro['basado_en'])
+                net.add_edge(distro['basado_en'], distro['nombre'])
+        
         st.session_state.grafo_html = net.generate_html()
 
-    # Muestra el gráfico en Streamlit
     components.html(st.session_state.grafo_html, height=750)
 
 # ⚖️ Sección de Comparativas
