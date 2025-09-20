@@ -65,7 +65,6 @@ if distros:
     
     st.session_state.grafo_html = net.generate_html()
 
-
     components.html(st.session_state.grafo_html, height=750)
 
 # ⚖️ Sección de Comparativas
