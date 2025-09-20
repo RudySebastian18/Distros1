@@ -7,7 +7,7 @@ from pyvis.network import Network
 st.set_page_config(layout="wide") # Opcional: para usar todo el ancho de la pantalla
 st.title("Cronología y Desarrollo de las Distribuciones Linux")
 st.markdown("---")
-st.markdown("Este proyecto es una página web dedicada a la **cronología y el desarrollo de las principales distribuciones de Linux**...")
+st.markdown("Este proyecto es una página web dedicada a la **cronología y el desarrollo de las principales distribuciones de Linux creada para el curso de Software Libre ")
 
 # Cargar los datos
 try:
@@ -263,7 +263,10 @@ for distro, (lat, lon) in coords.items():
     ).add_to(m)
 
 st_folium(m, width=800, height=500)
-
+st.markdown("Pagina creada por:")
+st.markdown("Rudy Sebastian Garcia Cucchi")
+st.markdown("Jair Renato Amado Diaz")
+st.markdown("Alexander Richard Galiano Diaz")
 ### Cambios realizados:
 
 #1.  **Uso de `st.session_state`**: El gráfico de Pyvis se genera una sola vez y se almacena en `st.session_state`. Esto evita que el código se ejecute repetidamente y cause errores. La línea `if 'grafo_html' not in st.session_state:` asegura que el gráfico solo se cree la primera vez que se carga la página.
