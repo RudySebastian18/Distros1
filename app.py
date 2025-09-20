@@ -35,8 +35,7 @@ if distros:
 
 #---
 
-### Sección de Árboles Genealógicos (corregida)
-
+# 🌳 Sección de Árboles Genealógicos
 st.header("🌳 Árboles Genealógicos")
 st.markdown("Descubre cómo las distribuciones están relacionadas...")
 
@@ -50,22 +49,18 @@ if distros:
         for distro in distros:
             net.add_node(distro['nombre'], title=distro['descripcion'], color="lightblue")
             if distro['basado_en']:
-                # Asegúrate de que la distro base también esté como un nodo si no existe
                 distro_base = next((d for d in distros if d['nombre'] == distro['basado_en']), None)
                 if not distro_base:
                     net.add_node(distro['basado_en'], color="orange")
                 net.add_edge(distro['basado_en'], distro['nombre'])
 
-        # Generar el HTML y guardarlo en la variable de sesión
         st.session_state.grafo_html = net.generate_html()
 
     # Muestra el gráfico en Streamlit
     components.html(st.session_state.grafo_html, height=750)
 
-#---
-
-### Sección de Comparativas
-
+# ⚖️ Sección de Comparativas
+st.markdown("---")
 st.header("⚖️ Comparativas Detalladas")
 st.markdown("Secciones dedicadas a las diferencias entre los grupos de distros más populares...")
 
