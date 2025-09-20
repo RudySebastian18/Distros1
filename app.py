@@ -145,6 +145,10 @@ if distros:
 # ===============================
 st.markdown("---")
 st.header("🎨 Galería de Logos")
+for distro in distros:
+    if "logo" in distro:
+        st.image(distro["logo"], width=120, caption=distro["nombre"])
+
 
 col1, col2, col3 = st.columns(3)
 for i, distro in enumerate(distros):
