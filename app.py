@@ -97,4 +97,4 @@ st.info("Una distribución es una colección de software basada en el kernel de 
 #2.  **`net.generate_html()` en lugar de `net.save_graph()`**: Esta función crea el código HTML directamente en la memoria, sin necesidad de guardar un archivo. Es la forma recomendada para integrar Pyvis con Streamlit.
 #3.  **Refactorización de la carga de datos**: Aunque tu función estaba bien, he movido el código de carga del archivo `distros.json` al bloque principal para simplificar.
 
-Con este código, el gráfico de Pyvis debería cargarse sin problemas y la aplicación será más estable.
+#Con este código, el gráfico de Pyvis debería cargarse sin problemas y la aplicación será más estable.
