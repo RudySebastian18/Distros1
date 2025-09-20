@@ -1,0 +1,29 @@
+[
+  {
+    "nombre": "Debian",
+    "fecha_lanzamiento": "1993-08-16",
+    "descripcion": "Una de las distribuciones más antiguas y estables...",
+    "paqueteria": ".deb",
+    "filosofia": "Software libre, estabilidad...",
+    "basado_en": null,
+    "ramas": ["Ubuntu", "Linux Mint", "Kali Linux"]
+  },
+  {
+    "nombre": "Ubuntu",
+    "fecha_lanzamiento": "2004-10-20",
+    "descripcion": "Basada en Debian, se centra en la facilidad de uso...",
+    "paqueteria": ".deb",
+    "filosofia": "Facilidad de uso, lanzamientos periódicos...",
+    "basado_en": "Debian",
+    "ramas": ["Kubuntu", "Xubuntu", "Lubuntu"]
+  },
+  {
+    "nombre": "Arch Linux",
+    "fecha_lanzamiento": "2002-03-11",
+    "descripcion": "Distribución minimalista y flexible con un modelo 'rolling release'...",
+    "paqueteria": "pacman",
+    "filosofia": "Principio KISS, simplicidad, rolling release...",
+    "basado_en": null,
+    "ramas": ["Manjaro", "ArcoLinux"]
+  }
+]
