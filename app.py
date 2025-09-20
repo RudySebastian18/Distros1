@@ -1,6 +1,7 @@
 import streamlit as st
 import json
-
+from pyvis.network import Network
+import streamlit.components.v1 as components
 # Función para cargar los datos del archivo JSON
 def cargar_datos_distros(path):
     with open(path, 'r', encoding='utf-8') as f:
@@ -42,6 +43,20 @@ if distros:
 st.markdown("---")
 st.header("🌳 Árboles Genealógicos")
 st.markdown("Descubre cómo las distribuciones están relacionadas...")
+# En la sección de "Árboles Genealógicos"
+net = Network(height='750px', width='100%', bgcolor='#222222', font_color='white')
+net.add_node("Debian", title="Debian GNU/Linux", color="orange")
+net.add_node("Ubuntu", title="Basado en Debian", color="red")
+net.add_node("Linux Mint", title="Basado en Ubuntu", color="green")
+net.add_edge("Debian", "Ubuntu")
+net.add_edge("Ubuntu", "Linux Mint")
+# Guarda el gráfico como un archivo HTML temporal
+net.save_graph("grafo.html")
+# Muestra el gráfico en Streamlit
+st.subheader("Visualización con Pyvis")
+with open("grafo.html", "r", encoding="utf-8") as html_file:
+    source_code = html_file.read()
+    components.html(source_code, height=750)
 
 # Este es un ejemplo simplificado de un gráfico. Para uno real, necesitarías librerías como `pyvis` o `graphviz`
 if distros:
