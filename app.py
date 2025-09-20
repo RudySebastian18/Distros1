@@ -263,10 +263,31 @@ for distro, (lat, lon) in coords.items():
     ).add_to(m)
 
 st_folium(m, width=800, height=500)
-st.markdown("Pagina creada por:")
-st.markdown("Rudy Sebastian Garcia Cucchi")
-st.markdown("Jair Renato Amado Diaz")
-st.markdown("Alexander Richard Galiano Diaz")
+# ===============================
+# 👨‍💻 Créditos
+# ===============================
+st.markdown("---")  # Línea separadora
+
+st.markdown(
+    """
+    <div style="text-align: center; font-size:20px; font-weight: bold; color: #1E90FF;">
+        🌟 Página creada por 🌟
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <div style="text-align: center; font-size:18px; color: #333;">
+        <b>Rudy Sebastian Garcia Cucchi</b><br>
+        <b>Jair Renato Amado Diaz</b><br>
+        <b>Alexander Richard Galiano Diaz</b>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 ### Cambios realizados:
 
 #1.  **Uso de `st.session_state`**: El gráfico de Pyvis se genera una sola vez y se almacena en `st.session_state`. Esto evita que el código se ejecute repetidamente y cause errores. La línea `if 'grafo_html' not in st.session_state:` asegura que el gráfico solo se cree la primera vez que se carga la página.
