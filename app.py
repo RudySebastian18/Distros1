@@ -109,6 +109,118 @@ if principiantes_distros:
         st.write(f"**Filosofía:** {distro_elegida['filosofia']}")
 
 #---
+import streamlit as st
+import json
+import streamlit.components.v1 as components
+from pyvis.network import Network
+import plotly.express as px
+import pandas as pd
+import folium
+from streamlit_folium import st_folium
+
+# ===============================
+# 📊 SECCIÓN: Gráficos estadísticos
+# ===============================
+st.markdown("---")
+st.header("📊 Estadísticas de las Distribuciones")
+
+if distros:
+    df = pd.DataFrame(distros)
+
+    # Conteo de derivadas
+    df["num_ramas"] = df["ramas"].apply(lambda x: len(x) if x else 0)
+    fig = px.bar(df, x="nombre", y="num_ramas", 
+                 title="Cantidad de derivadas por distribución madre",
+                 labels={"nombre":"Distribución", "num_ramas":"Número de derivadas"})
+    st.plotly_chart(fig, use_container_width=True)
+
+    # Pie chart de filosofías
+    filosofias = df["filosofia"].value_counts()
+    fig2 = px.pie(values=filosofias.values, names=filosofias.index, 
+                  title="Distribución por filosofías")
+    st.plotly_chart(fig2, use_container_width=True)
+
+# ===============================
+# 🎨 SECCIÓN: Galería de Logos
+# ===============================
+st.markdown("---")
+st.header("🎨 Galería de Logos")
+
+col1, col2, col3 = st.columns(3)
+for i, distro in enumerate(distros):
+    logo_path = f"logos/{distro['nombre'].lower().replace(' ','_')}.png"
+    with [col1, col2, col3][i % 3]:
+        try:
+            st.image(logo_path, caption=distro['nombre'], width=150)
+        except:
+            st.write(f"❌ Logo de {distro['nombre']} no disponible")
+
+# ===============================
+# 🌐 SECCIÓN: Popularidad en el tiempo (ejemplo fake data)
+# ===============================
+st.markdown("---")
+st.header("🌐 Popularidad en el tiempo")
+
+# 🔹 Datos simulados (puedes reemplazar con dataset real)
+data_popularidad = {
+    "Año": [2018,2019,2020,2021,2022,2023],
+    "Debian": [20,22,21,19,18,17],
+    "Ubuntu": [40,38,37,35,34,32],
+    "Arch Linux": [10,12,14,16,17,18],
+    "Slackware": [8,7,6,5,4,3]
+}
+df_pop = pd.DataFrame(data_popularidad)
+df_melt = df_pop.melt(id_vars="Año", var_name="Distro", value_name="Popularidad (%)")
+
+fig3 = px.line(df_melt, x="Año", y="Popularidad (%)", color="Distro", markers=True,
+               title="Popularidad relativa de algunas distribuciones")
+st.plotly_chart(fig3, use_container_width=True)
+
+# ===============================
+# 🖥️ SECCIÓN: Recomendador interactivo
+# ===============================
+st.markdown("---")
+st.header("🖥️ Recomendador de Distribuciones")
+
+uso = st.radio("👉 ¿Para qué quieres la distro?", ["Escritorio", "Servidor"])
+experiencia = st.radio("👉 ¿Nivel de experiencia?", ["Principiante", "Avanzado"])
+filo = st.radio("👉 ¿Prefieres estabilidad o lo último?", ["Estabilidad", "Últimas novedades"])
+
+if st.button("🔍 Recomiéndame una distro"):
+    if uso == "Escritorio" and experiencia == "Principiante":
+        st.success("✅ Te recomiendo **Ubuntu** o **Linux Mint**")
+    elif uso == "Servidor" and filo == "Estabilidad":
+        st.success("✅ Te recomiendo **Debian** o **CentOS/RHEL**")
+    elif experiencia == "Avanzado" and filo == "Últimas novedades":
+        st.success("✅ Te recomiendo **Arch Linux** o **Fedora**")
+    else:
+        st.success("✅ Una buena opción es **Debian**, balance entre estabilidad y soporte")
+
+# ===============================
+# 🌍 SECCIÓN: Mapa interactivo
+# ===============================
+st.markdown("---")
+st.header("🌍 Origen de las Distribuciones")
+
+# Coordenadas de ejemplo (puedes agregar más distros y coordenadas reales)
+coords = {
+    "Slackware": [39.7392, -104.9903],  # Denver, EE.UU.
+    "Debian": [48.1351, 11.5820],       # Múnich, Alemania
+    "Arch Linux": [45.5231, -122.6765], # Portland, EE.UU.
+    "Ubuntu": [-25.7461, 28.1881]       # Sudáfrica
+}
+
+m = folium.Map(location=[20,0], zoom_start=2)
+
+for distro, (lat, lon) in coords.items():
+    folium.Marker(
+        location=[lat, lon],
+        popup=f"<b>{distro}</b>",
+        tooltip=f"Origen: {distro}",
+        icon=folium.Icon(color="blue", icon="linux", prefix="fa")
+    ).add_to(m)
+
+st_folium(m, width=800, height=500)
 
 ### Cambios realizados:
 
