@@ -6,24 +6,77 @@
     "paqueteria": "tgz",
     "filosofia": "Estabilidad, simplicidad, KISS (Keep It Simple, Stupid).",
     "basado_en": null,
-    "ramas": ["SUSE Linux Enterprise"]
+    "ramas": ["SUSE Linux Enterprise"],
+    "publico_objetivo": "Expertos"
   },
   {
     "nombre": "Debian",
     "fecha_lanzamiento": "1993-08-16",
     "descripcion": "Fundada por Ian Murdock, se enfoca en la estabilidad y el software libre. Es la base de un vasto número de distribuciones y tiene un sistema de paquetería muy robusto.",
-    "paqueteria": ".deb",
+    "paqueteria": ".deb (APT)",
     "filosofia": "Estabilidad, software libre, lanzamientos bien definidos.",
     "basado_en": "Slackware (inspiración inicial)",
-    "ramas": ["Ubuntu", "Linux Mint", "Kali Linux"]
+    "ramas": ["Ubuntu", "Linux Mint", "Kali Linux"],
+    "publico_objetivo": "Intermedios"
+  },
+  {
+    "nombre": "Ubuntu",
+    "fecha_lanzamiento": "2004-10-20",
+    "descripcion": "Popular distribución basada en Debian. Famosa por su accesibilidad, soporte y facilidad de uso.",
+    "paqueteria": ".deb (APT)",
+    "filosofia": "Facilidad de uso y accesibilidad.",
+    "basado_en": "Debian",
+    "ramas": ["Kubuntu", "Xubuntu", "Lubuntu"],
+    "publico_objetivo": "Principiantes"
+  },
+  {
+    "nombre": "Linux Mint",
+    "fecha_lanzamiento": "2006-08-27",
+    "descripcion": "Distribución enfocada en la comodidad y facilidad para usuarios nuevos. Basada en Ubuntu y Debian.",
+    "paqueteria": ".deb (APT)",
+    "filosofia": "Simplicidad y usabilidad.",
+    "basado_en": "Ubuntu",
+    "ramas": [],
+    "publico_objetivo": "Principiantes"
+  },
+  {
+    "nombre": "Fedora",
+    "fecha_lanzamiento": "2003-11-06",
+    "descripcion": "Distribución patrocinada por Red Hat. Destaca por estar a la vanguardia tecnológica y servir como base de Red Hat Enterprise Linux.",
+    "paqueteria": "RPM (DNF)",
+    "filosofia": "Innovación, software libre y comunidad.",
+    "basado_en": "Red Hat Linux",
+    "ramas": ["Red Hat Enterprise Linux"],
+    "publico_objetivo": "Intermedios"
   },
   {
     "nombre": "Arch Linux",
     "fecha_lanzamiento": "2002-03-11",
-    "descripcion": "Una distribución minimalista y flexible con un modelo de 'rolling release'. Se enfoca en la simplicidad y el control del usuario, permitiendo construir el sistema desde cero.",
+    "descripcion": "Una distribución minimalista y flexible con un modelo de 'rolling release'. Se enfoca en la simplicidad y el control del usuario.",
     "paqueteria": "pacman",
     "filosofia": "Rolling release, simplicidad, KISS.",
     "basado_en": "Crux (inspiración inicial)",
-    "ramas": ["Manjaro", "ArcoLinux"]
+    "ramas": ["Manjaro", "ArcoLinux"],
+    "publico_objetivo": "Avanzados"
+  },
+  {
+    "nombre": "Manjaro",
+    "fecha_lanzamiento": "2011-07-10",
+    "descripcion": "Basada en Arch Linux, pero más fácil de usar. Ofrece instaladores gráficos, entornos preconfigurados y soporte amplio.",
+    "paqueteria": "pacman",
+    "filosofia": "Accesibilidad con el poder de Arch Linux.",
+    "basado_en": "Arch Linux",
+    "ramas": [],
+    "publico_objetivo": "Principiantes"
+  },
+  {
+    "nombre": "Kali Linux",
+    "fecha_lanzamiento": "2013-03-13",
+    "descripcion": "Distribución especializada en pruebas de seguridad y hacking ético. Incluye herramientas de auditoría preinstaladas.",
+    "paqueteria": ".deb (APT)",
+    "filosofia": "Seguridad, investigación y auditoría.",
+    "basado_en": "Debian",
+    "ramas": [],
+    "publico_objetivo": "Avanzados"
   }
 ]
