@@ -3,20 +3,16 @@ import json
 import streamlit.components.v1 as components
 from pyvis.network import Network
 
-# Función para cargar los datos del archivo JSON
-def cargar_datos_distros(path):
-    with open(path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    return data
-
 # Título y descripción de la página
+st.set_page_config(layout="wide") # Opcional: para usar todo el ancho de la pantalla
 st.title("Cronología y Desarrollo de las Distribuciones Linux")
 st.markdown("---")
 st.markdown("Este proyecto es una página web dedicada a la **cronología y el desarrollo de las principales distribuciones de Linux**...")
 
 # Cargar los datos
 try:
-    distros = cargar_datos_distros('distros.json')
+    with open('distros.json', 'r', encoding='utf-8') as f:
+        distros = json.load(f)
 except FileNotFoundError:
     st.error("No se encontró el archivo 'distros.json'. Asegúrate de que está en el mismo directorio.")
     distros = []
@@ -37,31 +33,39 @@ if distros:
             if distro['ramas']:
                 st.write(f"**Ramas derivadas:** {', '.join(distro['ramas'])}")
 
-# 🌳 Sección de Árboles Genealógicos
-st.markdown("---")
+---
+
+### Sección de Árboles Genealógicos (corregida)
+
 st.header("🌳 Árboles Genealógicos")
 st.markdown("Descubre cómo las distribuciones están relacionadas...")
 
-# **Aquí está el código corregido y funcional para el gráfico con Pyvis**
 if distros:
-    net = Network(height='750px', width='100%', bgcolor='#222222', font_color='white')
+    # Crear un contenedor para el gráfico y evitar la re-generación
+    # Esto es una buena práctica para optimizar el rendimiento de la app
+    if 'grafo_html' not in st.session_state:
+        net = Network(height='750px', width='100%', bgcolor='#222222', font_color='white')
 
-    # Añadir nodos y aristas dinámicamente desde los datos JSON
-    for distro in distros:
-        net.add_node(distro['nombre'], title=distro['descripcion'], color="lightblue")
-        if distro['basado_en']:
-            # Asegúrate de que la distro base también esté como un nodo
-            net.add_node(distro['basado_en'], color="orange") 
-            net.add_edge(distro['basado_en'], distro['nombre'])
+        # Añadir nodos y aristas dinámicamente desde los datos JSON
+        for distro in distros:
+            net.add_node(distro['nombre'], title=distro['descripcion'], color="lightblue")
+            if distro['basado_en']:
+                # Asegúrate de que la distro base también esté como un nodo si no existe
+                distro_base = next((d for d in distros if d['nombre'] == distro['basado_en']), None)
+                if not distro_base:
+                    net.add_node(distro['basado_en'], color="orange")
+                net.add_edge(distro['basado_en'], distro['nombre'])
 
-    # Guardar y mostrar el gráfico
-    net.save_graph("grafo.html")
-    with open("grafo.html", "r", encoding="utf-8") as html_file:
-        source_code = html_file.read()
-        components.html(source_code, height=750)
+        # Generar el HTML y guardarlo en la variable de sesión
+        st.session_state.grafo_html = net.generate_html()
 
-# ⚖️ Sección de Comparativas
-st.markdown("---")
+    # Muestra el gráfico en Streamlit
+    components.html(st.session_state.grafo_html, height=750)
+
+---
+
+### Sección de Comparativas
+
 st.header("⚖️ Comparativas Detalladas")
 st.markdown("Secciones dedicadas a las diferencias entre los grupos de distros más populares...")
 
@@ -81,9 +85,21 @@ if all(distros_comparar.values()):
     with col3:
         st.metric(label="Arch Linux", value=distros_comparar['Arch Linux']['paqueteria'])
 
-# 📚 Sección de Introducción para Principiantes
-st.markdown("---")
+---
+
+### Sección de Introducción para Principiantes
+
 st.header("📚 Introducción para Principiantes")
 st.markdown("Un área con información básica para aquellos que recién comienzan...")
 st.write("¿Qué es una distribución de Linux? ¿Cuál es la mejor para empezar?")
 st.info("Una distribución es una colección de software basada en el kernel de Linux...")
+
+---
+
+### Cambios realizados:
+
+1.  **Uso de `st.session_state`**: El gráfico de Pyvis se genera una sola vez y se almacena en `st.session_state`. Esto evita que el código se ejecute repetidamente y cause errores. La línea `if 'grafo_html' not in st.session_state:` asegura que el gráfico solo se cree la primera vez que se carga la página.
+2.  **`net.generate_html()` en lugar de `net.save_graph()`**: Esta función crea el código HTML directamente en la memoria, sin necesidad de guardar un archivo. Es la forma recomendada para integrar Pyvis con Streamlit.
+3.  **Refactorización de la carga de datos**: Aunque tu función estaba bien, he movido el código de carga del archivo `distros.json` al bloque principal para simplificar.
+
+Con este código, el gráfico de Pyvis debería cargarse sin problemas y la aplicación será más estable.
